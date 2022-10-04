@@ -1,9 +1,15 @@
 package com.example.hospital.Models;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+
+@Data
+@AllArgsConstructor
 
 public class MyUserDetails implements UserDetails {
 
@@ -11,8 +17,11 @@ public class MyUserDetails implements UserDetails {
     private String password;
     private boolean active;
     public MyUserDetails(){
-        this.userName ="mahmoud";
-        this.password = "123456";
+
+    }
+    public MyUserDetails(String userName, String password){
+        this.userName =userName;
+        this.password = password;
         this.active = true;
     }
 

@@ -16,7 +16,7 @@ import java.io.IOException;
 public class AuthFilter extends OncePerRequestFilter {
     private final String header="Authorization";
     private final String prefix="Bearer ";
-    private final String secret="hospitalProject-api&&&&14";
+    private final String secret="HRProject-api&&&&14";
 
     @Override
     protected void  doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
