@@ -36,8 +36,13 @@ public class Department {
         employees.add(employee);
     }
 
-    @OneToMany(mappedBy = "department",fetch = FetchType.LAZY,cascade = CascadeType.ALL )
-     Set<Employee> employees;
+    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    Set<Employee> employees;
+
+    public Department(Long id, String name) {
+        this.departmentId = id;
+        this.name = name;
+    }
 
 
 }

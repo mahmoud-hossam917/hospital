@@ -71,6 +71,6 @@ public class DepartmentController {
 
         return ResponseEntity.ok(response);
     }
-   
+
 
 }

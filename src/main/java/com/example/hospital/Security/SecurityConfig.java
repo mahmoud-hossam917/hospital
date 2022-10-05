@@ -10,9 +10,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private final String authWhitelist[]={
+    private final String authWhitelist[] = {
             "/api/*/",
-
+            "/hospital/*",
             "/api/*",
             // -- Swagger UI v2
             "/v2/api-docs", "/swagger-resources", "/swagger-resources/**", "/configuration/ui",
@@ -23,12 +23,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     };
 
-    private AuthFilter authFilter(){return  new AuthFilter();}
+    private AuthFilter authFilter() {
+        return new AuthFilter();
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().addFilterAfter(new AuthFilter(), UsernamePasswordAuthenticationFilter.class)
                 // . rememberMe() .tokenValiditySeconds(43200000).and()
-                .authorizeRequests().antMatchers(HttpMethod.POST,authWhitelist).permitAll().antMatchers(authWhitelist).permitAll().antMatchers("/admin")
+                .authorizeRequests().antMatchers(HttpMethod.POST, authWhitelist).permitAll().antMatchers(authWhitelist).permitAll().antMatchers("/admin")
                 .hasRole("admin").antMatchers("/user").hasRole("user").anyRequest().authenticated().and().formLogin()
                 .disable();
         http.logout().clearAuthentication(true);
